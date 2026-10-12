@@ -1,0 +1,49 @@
+
+.edit-post-container {
+    min-height: 100vh;
+    background-color: #f5f7fb;
+}
+
+.edit-post-card {
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.edit-post-header {
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+}
+
+.edit-post-header h3 {
+    font-weight: 700;
+}
+
+.edit-post-header p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.edit-post-card .form-label {
+    font-weight: 600;
+    color: #374151;
+}
+
+.edit-post-card .form-control {
+    padding: 12px 14px;
+    border-radius: 8px;
+    border-color: #d1d5db;
+}
+
+.edit-post-card .form-control:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.15);
+}
+
+.edit-post-card textarea {
+    resize: vertical;
+}
+
+.edit-post-card .btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+}
