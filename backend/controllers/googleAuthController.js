@@ -1,9 +1,9 @@
 const { OAuth2Client } = require("google-auth-library");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
-
+CLIENT_ID='932871045999-ev36gqafk841g4hamt3hvilv7hhtquh2.apps.googleusercontent.com';
 const googleClient = new OAuth2Client(
-  process.env.GOOGLE_CLIENT_ID
+  process.env.CLIENT_ID
 );
 
 const googleLogin = async (req, res, next) => {
@@ -19,7 +19,7 @@ const googleLogin = async (req, res, next) => {
     // Verify Google's ID token
     const ticket = await googleClient.verifyIdToken({
       idToken: credential,
-      audience: process.env.GOOGLE_CLIENT_ID,
+      audience: process.env.CLIENT_ID,
     });
 
     const payload = ticket.getPayload();
@@ -103,7 +103,7 @@ async function linkGoogleAccount(req, res) {
         // Verify the Google ID token
         const ticket = await googleClient.verifyIdToken({
             idToken: credential,
-            audience: process.env.GOOGLE_CLIENT_ID
+            audience: process.env.CLIENT_ID
         });
 
         const googleUser = ticket.getPayload();
