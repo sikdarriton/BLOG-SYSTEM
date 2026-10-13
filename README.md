@@ -19,6 +19,10 @@ RUN IN BROWSER
 ===============
 Open browser and use http://localhost:5173/ url
 
+DEMO VIDEO LINK
+================
+https://drive.google.com/file/d/1nKTQtO5CHFf_IU-HB75bxJ5j9apM74RJ/view?usp=sharing
+
 FEATURES IMPLEMENTED
 =====================
 1) Registration ( default user type user) by normally as well Google Registration.
