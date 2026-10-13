@@ -1,28 +1,7 @@
-COMPLETED PART
-==============
-Create post done without by react-bootstrap. Done with normal CSS.
-Edit post done by react-bootstrap
-
 ONGOING PENDING
 ===============
-3) Post Management create and soft deletes for posts
-4) ***Validate request payloads using a validation library (e.g., Joi / Zod)
-5) ***Generate a URL-friendly slug for each post
-6) Comment crud operation.
-
-
-ONGOING PENDING
-
-===============
-1)*****	a)Total number of users
-	b) Total number of posts
-	c) Total number of comments
-
-	above points have to show in dashboard
-
-2) refresh token need to apply in EDIT POST management.
-3) **Comment crud operation.**
-4) Optimize MongoDB queries using:
+1) ***refresh token need to apply in EDIT POST management.
+2) Optimize MongoDB queries using:
 	a) Indexing
 	b) Pagination
 	c) Use data population wisely to avoid unnecessary database calls.
