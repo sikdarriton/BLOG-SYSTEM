@@ -156,7 +156,7 @@ function AdminPosts() {
 
       <table align="center" border="1" cellPadding="10">
         <thead>
-          {currentUser?.role === "admin" && (
+          {/* {currentUser?.role === "admin" && ( */}
             <tr>
               <th colspan="5">
                 <Link to="/admin/posts/create">
@@ -164,7 +164,7 @@ function AdminPosts() {
                 </Link>
               </th>
             </tr>
-          )}
+          {/* )} */}
           <tr>
             <th>Title</th>
             <th>Content</th>

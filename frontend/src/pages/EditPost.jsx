@@ -19,7 +19,7 @@ function EditPost() {
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-     const [success, setSuccess] = useState("");
+    const [success, setSuccess] = useState("");
     const [saving, setSaving] = useState(false);
 
     // GET: Fetch the selected post by ID
@@ -99,7 +99,7 @@ function EditPost() {
 
             // alert("Post updated successfully!");
             setSuccess("Post details are ready to update.");
-           // navigate("/admin/posts");
+            // navigate("/admin/posts");
         } catch (err) {
             setError(err.message);
         } finally {
@@ -124,9 +124,9 @@ function EditPost() {
 
                         <Card.Body className="p-4 p-md-5">
 
-                            
 
-                                {error && (
+
+                            {error && (
                                 <Alert variant="danger">
                                     {error}
                                 </Alert>
@@ -138,51 +138,51 @@ function EditPost() {
                                 </Alert>
                             )}
 
-                                <Form onSubmit={handleSubmit}>
-                                    <Form.Group className="mb-4">
-                                        <Form.Label>Title</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            name="title"
-                                            value={form.title}
-                                            onChange={handleChange}
-                                            required
-                                            style={{ display: "block", width: "100%", padding: "10px" }}
-                                        />
-                                    </Form.Group>
+                            <Form onSubmit={handleSubmit}>
+                                <Form.Group className="mb-4">
+                                    <Form.Label>Title</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        name="title"
+                                        value={form.title}
+                                        onChange={handleChange}
+                                        required
+                                        style={{ display: "block", width: "100%", padding: "10px" }}
+                                    />
+                                </Form.Group>
 
-                                    <br />
+                                <br />
 
-                                    <Form.Group className="mb-4">
-                                        <Form.Label>Content</Form.Label>
-                                        <Form.Control
-                                            as="textarea"
-                                            name="content"
-                                            value={form.content}
-                                            onChange={handleChange}
-                                            required
-                                            rows="8"
-                                            style={{ display: "block", width: "100%", padding: "10px" }}
-                                        />
-                                    </Form.Group>
+                                <Form.Group className="mb-4">
+                                    <Form.Label>Content</Form.Label>
+                                    <Form.Control
+                                        as="textarea"
+                                        name="content"
+                                        value={form.content}
+                                        onChange={handleChange}
+                                        required
+                                        rows="8"
+                                        style={{ display: "block", width: "100%", padding: "10px" }}
+                                    />
+                                </Form.Group>
 
-                                    <br />
+                                <br />
 
-                                    <br />
+                                <br />
 
-                                    <Button type="submit" disabled={saving}>
-                                        {saving ? "Updating..." : "Update Post"}
-                                    </Button>
+                                <Button type="submit" disabled={saving}>
+                                    {saving ? "Updating..." : "Update Post"}
+                                </Button>
 
-                                    <Button 
-                                        type="button"
-                                        onClick={() => navigate("/admin/posts")}
-                                        style={{ marginLeft: "10px" }}
-                                    >
-                                        Cancel
-                                    </Button>
-                                </Form>
-                            
+                                <Button
+                                    type="button"
+                                    onClick={() => navigate("/admin/posts")}
+                                    style={{ marginLeft: "10px" }}
+                                >
+                                    Cancel
+                                </Button>
+                            </Form>
+
                         </Card.Body>
 
                     </Card>
