@@ -178,9 +178,13 @@ function AdminPosts() {
           {posts.map((post) => (
             <tr key={post._id}>
               <td>
-                <Link to={`/posts/${post.slug}`}>
-                  {post.title}
-                </Link>
+                {!post?.isDeleted ? (
+                  <Link to={`/posts/${post.slug}`}>
+                    {post.title}
+                  </Link>
+                ) : (
+                  post.title
+                )}
               </td>
               <td>{post.content}</td>
               <td>{post.author?.email || "Unknown"}</td>
@@ -188,15 +192,15 @@ function AdminPosts() {
               <td>
 
                 {(
-                  currentUser?.role === "admin" ||
+                  (currentUser?.role === "admin" ||
                   post.author?._id === currentUser?._id ||
-                  post.author === currentUser?._id
-                ) && (
+                  post.author === currentUser?._id) && !post?.isDeleted
+                ) ? (
                     <Link to={`/admin/posts/${post._id}/edit`}>
                       Edit
                     </Link>
-                  )}
-                &nbsp;
+                  ): <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>}
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 {(
                   currentUser?.role === "admin" ||
                   post.author?._id === currentUser?._id ||
