@@ -1,13 +1,26 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Pagination from "react-bootstrap/Pagination";
 
 const API = "http://localhost:5000/api/admin/posts";
 
 function AdminPosts() {
   const [posts, setPosts] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 5;
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+
+  const totalPages = Math.ceil(posts.length / postsPerPage);
+
+  const startIndex = (currentPage - 1) * postsPerPage;
+
+  const currentPosts = posts.slice(
+    startIndex,
+    startIndex + postsPerPage
+  );
 
   async function deletePost(id) {
     if (!window.confirm("Delete this post?")) return;
@@ -52,60 +65,60 @@ function AdminPosts() {
       const data = await response.json();
       console.log("Fetched posts:", data);
 
-      
+
       if (data.message === 'jwt expired' || data.message === 'jwt malformed' || data.message === 'invalid token') {
 
-                console.log("Token expired, attempting to refresh...");
+        console.log("Token expired, attempting to refresh...");
 
-                /* REFRESH TOKEN LOGIC */
+        /* REFRESH TOKEN LOGIC */
 
-                const refreshResponse = await fetch(
-                    "http://localhost:5000/api/auth/refresh",
-                    {
-                        method: "POST",
-                        credentials: "include",
-                    }
-                );
+        const refreshResponse = await fetch(
+          "http://localhost:5000/api/auth/refresh",
+          {
+            method: "POST",
+            credentials: "include",
+          }
+        );
 
-                console.log("Refresh response:", refreshResponse);
+        console.log("Refresh response:", refreshResponse);
 
-                if (!refreshResponse.ok) {
-                    localStorage.removeItem("token");
-                    // Redirect to your login page
-                    navigate("/", { replace: true });
+        if (!refreshResponse.ok) {
+          localStorage.removeItem("token");
+          // Redirect to your login page
+          navigate("/", { replace: true });
 
-                    return;
-                }
+          return;
+        }
 
-                const refreshData = await refreshResponse.json();
-                const token = refreshData.accessToken;
-                localStorage.setItem("token", token);
+        const refreshData = await refreshResponse.json();
+        const token = refreshData.accessToken;
+        localStorage.setItem("token", token);
 
-                const response = await fetch(
-                    API,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        }
-                    }
-                );
-
-                console.log("Fetched users after refresh:", response);
-
-                const data = await response.json();
-
-                if (!response.ok) {
-                    throw new Error(data.message || "Failed to fetch users");
-                }
-
-                setPosts(data.posts || []);
-
-                /* REFRESH TOKEN LOGIC */
-
-
-            } else {
-                setPosts(data.posts || []);
+        const response = await fetch(
+          API,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
             }
+          }
+        );
+
+        console.log("Fetched users after refresh:", response);
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to fetch users");
+        }
+
+        setPosts(data.posts || []);
+
+        /* REFRESH TOKEN LOGIC */
+
+
+      } else {
+        setPosts(data.posts || []);
+      }
 
 
     } catch (error) {
@@ -157,13 +170,13 @@ function AdminPosts() {
       <table align="center" border="1" cellPadding="10">
         <thead>
           {/* {currentUser?.role === "admin" && ( */}
-            <tr>
-              <th colspan="5">
-                <Link to="/admin/posts/create">
-                  Create Post
-                </Link>
-              </th>
-            </tr>
+          <tr>
+            <th colspan="5">
+              <Link to="/admin/posts/create">
+                Create Post
+              </Link>
+            </th>
+          </tr>
           {/* )} */}
           <tr>
             <th>Title</th>
@@ -175,7 +188,7 @@ function AdminPosts() {
         </thead>
 
         <tbody>
-          {posts.map((post) => (
+          {currentPosts.map((post) => (
             <tr key={post._id}>
               <td>
                 {!post?.isDeleted ? (
@@ -193,13 +206,13 @@ function AdminPosts() {
 
                 {(
                   (currentUser?.role === "admin" ||
-                  post.author?._id === currentUser?._id ||
-                  post.author === currentUser?._id) && !post?.isDeleted
+                    post.author?._id === currentUser?._id ||
+                    post.author === currentUser?._id) && !post?.isDeleted
                 ) ? (
-                    <Link to={`/admin/posts/${post._id}/edit`}>
-                      Edit
-                    </Link>
-                  ): <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>}
+                  <Link to={`/admin/posts/${post._id}/edit`}>
+                    Edit
+                  </Link>
+                ) : <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>}
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 {(
                   currentUser?.role === "admin" ||
@@ -221,6 +234,42 @@ function AdminPosts() {
           ))}
         </tbody>
       </table>
+
+
+      {totalPages > 1 && (
+        <div className="d-flex justify-content-center mt-4">
+          <Pagination>
+            <Pagination.Prev
+              disabled={currentPage === 1}
+              onClick={() =>
+                setCurrentPage((page) => page - 1)
+              }
+            />
+
+            {Array.from(
+              { length: totalPages },
+              (_, index) => index + 1
+            ).map((page) => (
+              <Pagination.Item
+                key={page}
+                active={page === currentPage}
+                onClick={() => setCurrentPage(page)}
+              >
+                {page}
+              </Pagination.Item>
+            ))}
+
+            <Pagination.Next
+              disabled={currentPage === totalPages}
+              onClick={() =>
+                setCurrentPage((page) => page + 1)
+              }
+            />
+          </Pagination>
+        </div>
+      )}
+
+
       <Link to="/dashboard">Back</Link>
     </div>
   );

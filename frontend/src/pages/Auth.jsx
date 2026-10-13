@@ -7,6 +7,8 @@ import {
     logoutUser
 } from "../services/authService";
 
+import "./Auth.css";
+
 
 export default function Auth() {
     const [mode, setMode] = useState("login");
@@ -54,13 +56,13 @@ export default function Auth() {
 
     async function handleGoogleSuccess(googleResponse) {
         try {
-          
+
             const response = await fetch(
                 "http://localhost:5000/api/auth/google",
                 {
                     method: "POST",
                     headers: {
-                        
+
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
@@ -85,60 +87,99 @@ export default function Auth() {
 
 
     return (
-        <div>
-            <h2>{mode === "register" ? "Register" : "Login"}</h2>
+        <div className="auth-page">
+            <div className="auth-card">
+                <div className="auth-header">
+                    <h2>
+                        {mode === "register" ? "Create Account" : "Welcome Back"}
+                    </h2>
+                    <p>
+                        {mode === "register"
+                            ? "Register to get started."
+                            : "Login to access your account."}
+                    </p>
+                </div>
 
-            <form onSubmit={handleSubmit}>
-                {mode === "register" && (
-                    <input
-                        placeholder="Name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                    />
+                {message && (
+                    <p className="auth-message" role="status">
+                        {message}
+                    </p>
                 )}
 
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
+                <form onSubmit={handleSubmit} className="auth-form">
+                    {mode === "register" && (
+                        <div className="auth-form-group">
+                            <label htmlFor="name">Full Name</label>
+                            <input
+                                id="name"
+                                type="text"
+                                placeholder="Enter your name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                            />
+                        </div>
+                    )}
 
-                <input
-                    type="password"
-                    placeholder="Password (minimum 8 characters)"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    minLength={8}
-                    maxLength={72}
-                    required
-                />
+                    <div className="auth-form-group">
+                        <label htmlFor="email">Email Address</label>
+                        <input
+                            id="email"
+                            type="email"
+                            placeholder="Enter your email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
 
-                <button type="submit">
-                    {mode === "register" ? "Register" : "Login"}
-                </button>
-            </form>
+                    <div className="auth-form-group">
+                        <label htmlFor="password">Password</label>
+                        <input
+                            id="password"
+                            type="password"
+                            placeholder="Minimum 8 characters"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            minLength={8}
+                            maxLength={72}
+                            required
+                        />
+                    </div>
 
-            <button
-                type="button"
-                onClick={() => {
-                    setMode(mode === "login" ? "register" : "login");
-                    setMessage("");
-                }}
-            >
-                {mode === "login"
-                    ? "Create an account"
-                    : "Already have an account? Login"}
-            </button>
+                    <button type="submit" className="auth-submit-btn">
+                        {mode === "register" ? "Create Account" : "Login"}
+                    </button>
+                </form>
 
-            <GoogleLogin
-                onSuccess={handleGoogleSuccess}
-                onError={() => setMessage("Google login failed")}
-            />
+                <div className="auth-divider">
+                    <span>OR</span>
+                </div>
 
-            <p role="status">{message}</p>
+                <div className="google-login">
+                    <GoogleLogin
+                        onSuccess={handleGoogleSuccess}
+                        onError={() => setMessage("Google login failed")}
+                    />
+                </div>
+
+                <div className="auth-footer">
+                    {mode === "login"
+                        ? "Don't have an account?"
+                        : "Already have an account?"}
+
+                    <button
+                        type="button"
+                        className="auth-toggle-btn"
+                        onClick={() => {
+                            setMode(mode === "login" ? "register" : "login");
+                            setMessage("");
+                        }}
+                    >
+                        {mode === "login" ? "Register" : "Login"}
+                    </button>
+                </div>
+            </div>
         </div>
     );
 }

@@ -169,18 +169,20 @@ function EditPost() {
                                 <br />
 
                                 <br />
+                                <div className="create-post-actions">
+                                    <Button type="submit" className="btn-create" disabled={saving}>
+                                        {saving ? "Updating..." : "Update Post"}
+                                    </Button>
 
-                                <Button type="submit" disabled={saving}>
-                                    {saving ? "Updating..." : "Update Post"}
-                                </Button>
+                                    <Button
+                                        type="button"
+                                        className="btn-cancel"
+                                        onClick={() => navigate("/admin/posts")}
+                                        style={{ marginLeft: "10px" }}
+                                    >
+                                        Cancel
+                                    </Button></div>
 
-                                <Button
-                                    type="button"
-                                    onClick={() => navigate("/admin/posts")}
-                                    style={{ marginLeft: "10px" }}
-                                >
-                                    Cancel
-                                </Button>
                             </Form>
 
                         </Card.Body>

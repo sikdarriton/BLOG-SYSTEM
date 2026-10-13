@@ -1,6 +1,15 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+    Container,
+    Row,
+    Col,
+    Card,
+    Alert,
+    Form,
+    Button
+} from "react-bootstrap";
 import "./CreatePost.css";
 
 function CreatePost() {
@@ -58,60 +67,85 @@ function CreatePost() {
 
     return (
 
-        <div className="create-post">
-            <div className="create-post-header">
-                <h2>Create Post</h2>
-                <p>Write and publish a new blog post.</p>
-            </div>
+        <Container className="create-post-container py-5">
+            <Row className="justify-content-center">
+                <Col lg={8} md={10}>
+                    <Card className="create-post-card shadow-sm border-0">
 
-            {error && <p className="create-post-error">{error}</p>}
+                        <Card.Header className="create-post-header text-white p-4">
+                            <h3 className="mb-1">Create Post</h3>
+                            <p className="mb-0">
+                                Write and publish a new blog post.
+                            </p>
+                        </Card.Header>
 
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="title">Post Title</label>
-                    <input
-                        id="title"
-                        type="text"
-                        name="title"
-                        value={form.title}
-                        onChange={handleChange}
-                        placeholder="Enter post title"
-                        required
-                    />
-                </div>
+                        <Card.Body className="p-4 p-md-5">
 
-                <div className="form-group">
-                    <label htmlFor="content">Content</label>
-                    <textarea
-                        id="content"
-                        name="content"
-                        value={form.content}
-                        onChange={handleChange}
-                        placeholder="Write your post..."
-                        rows="8"
-                        required
-                    />
-                </div>
+                            {error && (
+                                <Alert variant="danger">
+                                    {error}
+                                </Alert>
+                            )}
 
-                <div className="create-post-actions">
-                    <button
-                        type="submit"
-                        className="btn-create"
-                        disabled={loading}
-                    >
-                        {loading ? "Creating..." : "Create Post"}
-                    </button>
+                            <Form onSubmit={handleSubmit}>
+                                <Form.Group className="mb-4">
+                                    <Form.Label>Post Title</Form.Label>
 
-                    <button
-                        type="button"
-                        className="btn-cancel"
-                        onClick={() => navigate("/admin/posts")}
-                    >
-                        Cancel
-                    </button>
-                </div>
-            </form>
-        </div>
+                                    <Form.Control
+                                        type="text"
+                                        id="title"
+                                        name="title"
+                                        value={form.title}
+                                        onChange={handleChange}
+                                        placeholder="Enter post title"
+                                        required
+                                    />
+                                </Form.Group>
+
+                                <Form.Group className="mb-4">
+                                    <Form.Label>Content</Form.Label>
+
+                                    <Form.Control
+                                        as="textarea"
+                                        id="content"
+                                        name="content"
+                                        value={form.content}
+                                        onChange={handleChange}
+                                        placeholder="Write your post..."
+                                        rows={8}
+                                        required
+                                    />
+                                </Form.Group>
+
+                                <div className="create-post-actions">
+                                    <Button
+                                        type="submit"
+                                        className="btn-create"
+                                        disabled={loading}
+                                    >
+                                        {loading
+                                            ? "Creating..."
+                                            : "Create Post"}
+                                    </Button>
+
+                                    <Button
+                                        type="button"
+                                        variant="secondary"
+                                        className="btn-cancel"
+                                        onClick={() =>
+                                            navigate("/admin/posts")
+                                        }
+                                    >
+                                        Cancel
+                                    </Button>
+                                </div>
+                            </Form>
+
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+        </Container>
 
     );
 }

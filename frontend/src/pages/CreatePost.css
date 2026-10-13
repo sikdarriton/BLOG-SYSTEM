@@ -1,156 +1,97 @@
 
-/* Main container */
-.create-post {
-    max-width: 750px;
-    margin: 40px auto;
-    padding: 32px;
-    background-color: #ffffff;
-    border: 1px solid #e5e7eb;
+.create-post-container {
+    min-height: 100vh;
+}
+
+.create-post-card {
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-    box-sizing: border-box;
+    overflow: hidden;
+    background-color: #ffffff;
 }
 
-/* Header */
 .create-post-header {
-    margin-bottom: 28px;
-    padding-bottom: 18px;
-    border-bottom: 1px solid #e5e7eb;
+    background: linear-gradient(135deg, #0d6efd, #084298);
+    border-bottom: none;
 }
 
-.create-post-header h2 {
-    margin: 0 0 8px;
-    color: #1f2937;
-    font-size: 26px;
-    font-weight: 700;
+.create-post-header h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 .create-post-header p {
-    margin: 0;
-    color: #6b7280;
-    font-size: 14px;
+    font-size: 0.95rem;
+    opacity: 0.9;
 }
 
-/* Form groups */
-.create-post .form-group {
-    margin-bottom: 22px;
-}
-
-.create-post .form-group label {
+.create-post-card .form-label {
     display: block;
-    margin-bottom: 8px;
-    color: #374151;
-    font-size: 15px;
+    margin-bottom: 10px;
     font-weight: 600;
+    color: #343a40;
 }
 
-/* Input and textarea */
-.create-post .form-group input,
-.create-post .form-group textarea {
+.create-post-card .form-control {
     display: block;
     width: 100%;
-    padding: 12px 14px;
-    border: 1px solid #d1d5db;
-    border-radius: 7px;
-    background-color: #ffffff;
-    color: #111827;
-    font-family: inherit;
-    font-size: 15px;
-    box-sizing: border-box;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
 }
 
-.create-post .form-group input {
-    height: 46px;
+.create-post-card .form-control:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
 }
 
-.create-post .form-group textarea {
-    min-height: 180px;
+.create-post-card textarea {
     resize: vertical;
-    line-height: 1.6;
+    min-height: 180px;
 }
 
-.create-post .form-group input:focus,
-.create-post .form-group textarea:focus {
-    outline: none;
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
-}
-
-.create-post .form-group input::placeholder,
-.create-post .form-group textarea::placeholder {
-    color: #9ca3af;
-}
-
-/* Error message */
-.create-post-error {
-    padding: 12px 14px;
-    margin-bottom: 20px;
-    color: #b91c1c;
-    background-color: #fef2f2;
-    border: 1px solid #fecaca;
-    border-radius: 7px;
-    font-size: 14px;
-}
-
-/* Buttons */
 .create-post-actions {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
     gap: 12px;
-    margin-top: 28px;
+    margin-top: 10px;
 }
 
-.create-post-actions button {
-    padding: 11px 22px;
-    border: none;
-    border-radius: 7px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s;
+.create-post-actions .btn {
+    padding: 10px 22px;
+    font-weight: 500;
+    border-radius: 6px;
 }
 
-.create-post .btn-create {
-    color: #ffffff;
-    background-color: #2563eb;
+.create-post-actions .btn-create {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
 }
 
-.create-post .btn-create:hover:not(:disabled) {
-    background-color: #1d4ed8;
-    transform: translateY(-1px);
+.create-post-actions .btn-create:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
 }
 
-.create-post .btn-create:disabled {
-    background-color: #93c5fd;
-    cursor: not-allowed;
+.create-post-actions .btn-cancel {
+    background-color: #6c757d;
+    border-color: #6c757d;
 }
 
-.create-post .btn-cancel {
-    color: #374151;
-    background-color: #e5e7eb;
-}
-
-.create-post .btn-cancel:hover {
-    background-color: #d1d5db;
-}
-
-/* Responsive layout */
-@media (max-width: 600px) {
-    .create-post {
-        margin: 20px 12px;
-        padding: 22px 18px;
-    }
-
-    .create-post-header h2 {
-        font-size: 22px;
+@media (max-width: 576px) {
+    .create-post-container {
+        padding-top: 24px !important;
+        padding-bottom: 24px !important;
     }
 
     .create-post-actions {
         flex-direction: column;
+        align-items: stretch;
     }
 
-    .create-post-actions button {
+    .create-post-actions .btn {
         width: 100%;
     }
 }

@@ -1,0 +1,122 @@
+
+.account-settings-page {
+    min-height: 100vh;
+    padding: 40px 20px;
+    background: #f4f7fb;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+.account-settings-card {
+    width: 100%;
+    max-width: 650px;
+    background: #ffffff;
+    border: 1px solid #e5eaf1;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+    box-sizing: border-box;
+}
+
+.account-settings-header {
+    text-align: center;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #edf0f5;
+}
+
+.account-settings-icon {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #eef2ff;
+    border-radius: 14px;
+    font-size: 27px;
+}
+
+.account-settings-header h2 {
+    margin: 0 0 10px;
+    color: #1e293b;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.account-settings-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.account-settings-section {
+    margin-top: 28px;
+    padding: 22px;
+    background: #f8fafc;
+    border: 1px solid #e8edf4;
+    border-radius: 12px;
+}
+
+.account-settings-section h3 {
+    margin: 0 0 10px;
+    color: #334155;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.account-settings-section p {
+    margin: 0 0 20px;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.google-link-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.account-settings-footer {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #edf0f5;
+}
+
+.account-settings-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.account-settings-back:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .account-settings-page {
+        padding: 20px 12px;
+    }
+
+    .account-settings-card {
+        padding: 22px 18px;
+        border-radius: 12px;
+    }
+
+    .account-settings-header h2 {
+        font-size: 23px;
+    }
+
+    .account-settings-section {
+        padding: 17px;
+    }
+}

@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Pagination from "react-bootstrap/Pagination";
 
 const API = "http://localhost:5000/api/users";
 
@@ -10,6 +11,17 @@ export default function UserManagement() {
     const [error, setError] = useState("");
     const [currentUser, setCurrentUser] = useState(null);
     const navigate = useNavigate();
+    const [currentPage, setCurrentPage] = useState(1);
+    const usersPerPage = 5;
+
+    const totalPages = Math.ceil(users.length / usersPerPage);
+
+    const startIndex = (currentPage - 1) * usersPerPage;
+
+    const currentUsers = users.slice(
+        startIndex,
+        startIndex + usersPerPage
+    );
 
     async function fetchUsers() {
         try {
@@ -176,7 +188,7 @@ export default function UserManagement() {
                 </thead>
 
                 <tbody>
-                    {users.map(user => (
+                    {currentUsers.map(user => (
                         <tr key={user._id}>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
@@ -219,6 +231,41 @@ export default function UserManagement() {
                     )}
                 </tbody>
             </table>
+
+
+            {totalPages > 1 && (
+                <div className="d-flex justify-content-center mt-4">
+                    <Pagination>
+                        <Pagination.Prev
+                            disabled={currentPage === 1}
+                            onClick={() =>
+                                setCurrentPage((page) => page - 1)
+                            }
+                        />
+
+                        {Array.from(
+                            { length: totalPages },
+                            (_, index) => index + 1
+                        ).map((page) => (
+                            <Pagination.Item
+                                key={page}
+                                active={page === currentPage}
+                                onClick={() => setCurrentPage(page)}
+                            >
+                                {page}
+                            </Pagination.Item>
+                        ))}
+
+                        <Pagination.Next
+                            disabled={currentPage === totalPages}
+                            onClick={() =>
+                                setCurrentPage((page) => page + 1)
+                            }
+                        />
+                    </Pagination>
+                </div>
+            )}
+
             <Link to="/dashboard">Back</Link>
         </div>
     );
