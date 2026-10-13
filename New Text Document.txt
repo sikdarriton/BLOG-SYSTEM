@@ -1,13 +1,10 @@
-ONGOING PENDING
+PENDING
 ===============
 1) ***refresh token need to apply in EDIT POST management.
 2) Optimize MongoDB queries using:
 	a) Indexing
-	b) Pagination
-	c) Use data population wisely to avoid unnecessary database calls.
-3) *****Create a video for showing the process to client.
-
-4) JWT MALFORMED every page and pagination in listing.
+	b) Use data population wisely to avoid unnecessary database calls.
+3) JWT MALFORMED every page and pagination in listing.
 
 
 
