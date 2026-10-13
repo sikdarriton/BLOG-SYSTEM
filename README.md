@@ -19,16 +19,9 @@ RUN IN BROWSER
 ===============
 Open browser and use http://localhost:5173/ url
 
-BEFORE DEMO VIDEO LINK
-================
-Beforely (
-  https://drive.google.com/file/d/1nKTQtO5CHFf_IU-HB75bxJ5j9apM74RJ/view?usp=sharing
-  https://drive.google.com/file/d/1O249BBuOexiu8HxNHew_1aYKeziMJiax/view?usp=drive_link
-)
-
 **LATEST VIDEO LINK**
 ===================
-https://drive.google.com/file/d/1HoZGorNHqyS7wZ46xDMR3DNaoacN1kn6/view?usp=drive_link
+https://drive.google.com/file/d/1HoZGorNHqyS7wZ46xDMR3DNaoacN1kn6/view?usp=sharing
 
 FEATURES IMPLEMENTED
 =====================
