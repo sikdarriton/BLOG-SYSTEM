@@ -22,6 +22,7 @@ Open browser and use http://localhost:5173/ url
 DEMO VIDEO LINK
 ================
 https://drive.google.com/file/d/1nKTQtO5CHFf_IU-HB75bxJ5j9apM74RJ/view?usp=sharing
+https://drive.google.com/file/d/1O249BBuOexiu8HxNHew_1aYKeziMJiax/view?usp=drive_link
 
 FEATURES IMPLEMENTED
 =====================
