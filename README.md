@@ -5,7 +5,7 @@ if out is below TCP 127.0.0.1:5173 0.0.0.0:0 LISTENING 12340 then run below comm
 
 DOWNLOAD FROM GITHUB BY BELOW COMMAND
 =====================================
-Open git bash and run below command git clone https://github.com/sikdarriton/TECH-EXACTLY-RITON-MERN-MACHINE-TEST.git
+Open git bash and run below command git clone https://github.com/sikdarriton/BLOG-SYSTEM.git
 
 FRONTEND
 =========
